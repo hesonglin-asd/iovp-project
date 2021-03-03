@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iovp.project.apply.dao.ApplyStatusDao">
+	<select id="findListByQuery" parameterType="ApplyStatus" resultMap="resultMap">
+		select
+			cas.id,
+			cas.text,
+			cas.code,
+			cas.status,
+			cas.createUser,
+			cas.createTime,
+			cas.updateUser,
+			cas.updateTime
+		from
+			car_apply_status cas
+		<where>
+			<trim suffixOverrides="and">
+				<if test="id != null">cas.id=#{id} and </if>
+				<if test="text != null">cas.text like concat('%', #{text}, '%') and </if>
+				<if test="code != null">cas.code=#{code} and </if>
+				<if test="status != null">cas.status=#{status} and </if>
+			</trim>
+		</where>
+		order by
+			cas.createTime asc
+	</select>
+
+	<insert id="save" parameterType="ApplyStatus">
+		insert into car_apply_status(
+			<trim suffixOverrides=",">
+				<if test="id != null">id, </if>
+				<if test="text != null">text, </if>
+				<if test="code != null">code, </if>
+				<if test="status != null">status, </if>
+				<if test="createUser != null">createUser, </if>
+				<if test="createTime != null">createTime, </if>
+				<if test="updateUser != null">updateUser, </if>
+				<if test="updateTime != null">updateTime, </if>
+			</trim>
+		) values(
+			<trim suffixOverrides=",">
+				<if test="id != null">#{id}, </if>
+				<if test="text != null">#{text}, </if>
+				<if test="code != null">#{code}, </if>
+				<if test="status != null">#{status}, </if>
+				<if test="createUser != null">#{createUser}, </if>
+				<if test="createTime != null">#{createTime}, </if>
+				<if test="updateUser != null">#{updateUser}, </if>
+				<if test="updateTime != null">#{updateTime}, </if>
+			</trim>
+		)
+	</insert>
+
+	<update id="update" parameterType="ApplyStatus">
+		update car_apply_status
+		<set>
+			<trim suffixOverrides=",">
+				<if test="text != null">text=#{text}, </if>
+				<if test="code != null">code=#{code}, </if>
+				<if test="status != null">status=#{status}, </if>
+				<if test="createUser != null">createUser=#{createUser}, </if>
+				<if test="createTime != null">createTime=#{createTime}, </if>
+				<if test="updateUser != null">updateUser=#{updateUser}, </if>
+				<if test="updateTime != null">updateTime=#{updateTime}, </if>
+			</trim>
+		</set>
+		<where>
+			<trim suffixOverrides="and">
+				<if test="id != null">id=#{id} and </if>
+			</trim>
+		</where>
+	</update>
+
+	<resultMap id="resultMap" type="ApplyStatus">
+		<id property="id" javaType="java.lang.String" column="id"/>
+		<result property="text" javaType="java.lang.String" column="text"/>
+		<result property="code" javaType="java.lang.String" column="code"/>
+		<result property="status" javaType="java.lang.Integer" column="status"/>
+		<result property="createUser" javaType="java.lang.String" column="createUser"/>
+		<result property="createTime" javaType="java.util.Date" column="createTime"/>
+		<result property="updateUser" javaType="java.lang.String" column="updateUser"/>
+		<result property="updateTime" javaType="java.util.Date" column="updateTime"/>
+	</resultMap>
+</mapper>

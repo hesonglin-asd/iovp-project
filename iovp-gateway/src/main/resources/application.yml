@@ -1,0 +1,7 @@
+###### 配置项目启动端口号
+server:
+  port: 65530
+spring:
+  ###### 配置项目应用名
+  application:
+    name: iovp-gateway
