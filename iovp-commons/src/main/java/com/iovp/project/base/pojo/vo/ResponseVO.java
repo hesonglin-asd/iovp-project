@@ -1,6 +1,6 @@
 package com.iovp.project.base.pojo.vo;
 
-import cn.ekgc.socip.base.pojo.enums.ResponseCodeEnum;
+import com.iovp.project.base.pojo.enums.ResponseCodeEnum;
 
 import java.io.Serializable;
 
@@ -11,7 +11,7 @@ import java.io.Serializable;
  *     所有异步返回前端数据都必须以本响应视图返回
  * </p>
  * @param <E>
- * @author Arthur
+ * @author hsl
  * @version 1.0.0
  * @since 1.0.0
  */

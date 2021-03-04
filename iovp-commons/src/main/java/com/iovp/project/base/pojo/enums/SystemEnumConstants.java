@@ -1,6 +1,6 @@
 package com.iovp.project.base.pojo.enums;
 
-import cn.ekgc.socip.base.pojo.vo.PageVO;
+import com.iovp.project.base.pojo.vo.PageVO;
 
 import java.util.Properties;
 

@@ -1,6 +1,6 @@
 ###### 配置项目启动端口号
 server:
-  port: 33399
+  port: 22299
 spring:
   ###### 配置项目应用名
   application:
