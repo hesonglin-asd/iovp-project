@@ -42,7 +42,6 @@ public class DriverStatusController extends BaseController {
 		if (StringUtil.isNotNull(token)) {
 			// 根据 token 获得登录用户信息
 			User loginUser = userTransport.getUserByToken(token);
-			loginUser = new User();
 			if (loginUser != null) {
 				// 用户已登录
 				// 封装查询对象
@@ -77,7 +76,6 @@ public class DriverStatusController extends BaseController {
 		if (StringUtil.isNotNull(token)) {
 			// 根据 token 获得登录用户信息
 			User loginUser = userTransport.getUserByToken(token);
-			loginUser = new User();
 			if (loginUser != null) {
 				// 用户已登录
 				return ResponseVO.getSuccessResponse(transport.getListByQuery(query));
@@ -104,7 +102,6 @@ public class DriverStatusController extends BaseController {
 		// 根据 token 获得登录用户信息
 		if (StringUtil.isNotNull(token)) {
 			User loginUser = userTransport.getUserByToken(token);
-			loginUser = new User();
 			if (loginUser != null) {
 				// 用户已登录
 				// 检测用户所提交的数据是否可用
@@ -149,7 +146,6 @@ public class DriverStatusController extends BaseController {
 		if (StringUtil.isNotNull(token)) {
 			// 根据 token 获得登录用户信息
 			User loginUser = userTransport.getUserByToken(token);
-			loginUser = new User();
 			if (loginUser != null) {
 				// 用户已登录
 				// 检测用户所提交的数据是否可用
