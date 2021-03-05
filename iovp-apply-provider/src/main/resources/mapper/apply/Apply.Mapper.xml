@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iovp.project.apply.dao.ApplyDao">
+	<select id="findListByQuery" parameterType="Apply" resultMap="resultMap">
+		select
+		ca.id,
+		ca.applyNo,
+		ca.applyUser,
+		au.name applyName,
+		ca.applyCellphone,
+		ca.seat,
+		cs.text seatText,
+		cs.code seatCode,
+		ca.applyBeginDate,
+		ca.expectBackDate,
+		ca.targetAddress,
+		ca.applyRemark,
+		ca.applyDate,
+		ca.examineUser,
+		eu.name examineName,
+		ca.examineRemark,
+		ca.examineDate,
+		ca.car,
+		ci.no,
+		ca.driver,
+		sd.name driverName,
+		ca.driverCellphone,
+		ca.realityBackDate,
+		ca.applyStatus,
+		cas.text applyStatusText,
+		cas.code applyStatusCode,
+		ca.createUser,
+		ca.createTime,
+		ca.updateUser,
+		ca.updateTime
+		from
+		car_apply ca join sys_user au on ca.applyUser=au.id
+		join car_seat cs on ca.seat=cs.id
+		left join sys_user eu on ca.examineUser=eu.id
+		left join car_info ci on ca.car=ci.id
+		left join sys_driver sd on ca.driver=sd.id
+		join car_apply_status cas on ca.applyStatus=cas.id
+		<where>
+			<trim suffixOverrides="and">
+				<if test="id != null">ca.id=#{id} and </if>
+				<if test="applyNo != null">ca.applyNo=#{applyNo} and </if>
+				<if test="applyUser != null and applyUser.id != null">ca.applyUser=#{applyUser.id} and </if>
+				<if test="applyUser != null and applyUser.name != null">au.name like concat('%', #{applyUser.name}, '%') and </if>
+				<if test="seat != null and seat.id != null">ca.seat=#{seat.id} and </if>
+				<if test="beginQueryApplyBeginDate != null">date_format(ca.applyBeginDate, '%Y-%m-%d 00:00:00') <![CDATA[>=]]> date_format(#{beginQueryApplyBeginDate}, '%Y-%m-%d 00:00:00') and </if>
+				<if test="endQueryApplyEndDate != null">date_format(ca.applyBeginDate, '%Y-%m-%d 23:59:59') <![CDATA[<=]]> date_format(#{endQueryApplyEndDate}, '%Y-%m-%d 23:59:59') and </if>
+				<if test="examineUser != null and examineUser.id != null">ca.examineUser=#{examineUser.id} and </if>
+				<if test="examineUser != null and examineUser.name != null">eu.name like concat('%', #{examineUser.name}, '%') and </if>
+				<if test="car != null and car.id != null">ca.car=#{car.id} and </if>
+				<if test="car != null and car.no != null">ci.no=#{car.no} and </if>
+				<if test="driver != null and driver.id != null">ca.driver=#{driver.id} and </if>
+				<if test="driver != null and driver.name != null">sd.name like concat('%', #{driver.name}, '%') and </if>
+				<if test="applyStatus != null">ca.applyStatus=#{applyStatus} and </if>
+			</trim>
+		</where>
+		order by ca.applyDate desc
+	</select>
+
+	<insert id="save" parameterType="Apply">
+		insert into car_apply(
+		<trim suffixOverrides=",">
+			<if test="id != null">id, </if>
+			<if test="applyNo != null">applyNo, </if>
+			<if test="applyUser != null and applyUser.id != null">applyUser, </if>
+			<if test="applyCellphone != null">applyCellphone, </if>
+			<if test="seat != null and seat.id != null">seat, </if>
+			<if test="applyBeginDate != null">applyBeginDate, </if>
+			<if test="expectBackDate != null">expectBackDate, </if>
+			<if test="targetAddress != null">targetAddress, </if>
+			<if test="applyRemark != null">applyRemark, </if>
+			<if test="applyDate != null">applyDate, </if>
+			<if test="examineUser != null and examineUser.id != null">examineUser, </if>
+			<if test="examineRemark != null">examineRemark, </if>
+			<if test="examineDate != null">examineDate, </if>
+			<if test="car != null and car.id != null">car, </if>
+			<if test="driver != null and driver.id != null">driver, </if>
+			<if test="driverCellphone != null">driverCellphone, </if>
+			<if test="realityBackDate != null">realityBackDate, </if>
+			<if test="applyStatus != null and applyStatus.id != null">applyStatus, </if>
+			<if test="createUser != null">createUser, </if>
+			<if test="createTime != null">createTime, </if>
+			<if test="updateUser != null">updateUser, </if>
+			<if test="updateTime != null">updateTime, </if>
+		</trim>
+		) values(
+		<trim suffixOverrides=",">
+			<if test="id != null">#{id}, </if>
+			<if test="applyNo != null">#{applyNo}, </if>
+			<if test="applyUser != null and applyUser.id != null">#{applyUser.id}, </if>
+			<if test="applyCellphone != null">#{applyCellphone}, </if>
+			<if test="seat != null and seat.id != null">#{seat.id}, </if>
+			<if test="applyBeginDate != null">#{applyBeginDate}, </if>
+			<if test="expectBackDate != null">#{expectBackDate}, </if>
+			<if test="targetAddress != null">#{targetAddress}, </if>
+			<if test="applyRemark != null">#{applyRemark}, </if>
+			<if test="applyDate != null">#{applyDate}, </if>
+			<if test="examineUser != null and examineUser.id != null">#{examineUser.id}, </if>
+			<if test="examineRemark != null">#{examineRemark}, </if>
+			<if test="examineDate != null">#{examineDate}, </if>
+			<if test="car != null and car.id != null">#{car.id}, </if>
+			<if test="driver != null and driver.id != null">#{driver.id}, </if>
+			<if test="driverCellphone != null">#{driverCellphone}, </if>
+			<if test="realityBackDate != null">#{realityBackDate}, </if>
+			<if test="applyStatus != null and applyStatus.id != null">#{applyStatus.id}, </if>
+			<if test="createUser != null">#{createUser}, </if>
+			<if test="createTime != null">#{createTime}, </if>
+			<if test="updateUser != null">#{updateUser}, </if>
+			<if test="updateTime != null">#{updateTime}, </if>
+		</trim>
+		)
+	</insert>
+
+	<update id="update" parameterType="Apply">
+		update car_apply
+		<set>
+			<trim suffixOverrides=",">
+				<if test="applyNo != null">applyNo=#{applyNo}, </if>
+				<if test="applyUser != null and applyUser.id != null">applyUser=#{applyUser.id}, </if>
+				<if test="applyCellphone != null">applyCellphone=#{applyCellphone}, </if>
+				<if test="seat != null and seat.id != null">seat=#{seat.id}, </if>
+				<if test="applyBeginDate != null">applyBeginDate=#{applyBeginDate}, </if>
+				<if test="expectBackDate != null">expectBackDate=#{expectBackDate}, </if>
+				<if test="targetAddress != null">targetAddress=#{targetAddress}, </if>
+				<if test="applyRemark != null">applyRemark=#{applyRemark}, </if>
+				<if test="applyDate != null">applyDate=#{applyDate}, </if>
+				<if test="examineUser != null and examineUser.id != null">examineUser=#{examineUser.id}, </if>
+				<if test="examineRemark != null">examineRemark=#{examineRemark}, </if>
+				<if test="examineDate != null">examineDate=#{examineDate}, </if>
+				<if test="car != null and car.id != null">car=#{car.id}, </if>
+				<if test="driver != null and driver.id != null">driver=#{driver.id}, </if>
+				<if test="driverCellphone != null">driverCellphone=#{driverCellphone}, </if>
+				<if test="realityBackDate != null">realityBackDate=#{realityBackDate}, </if>
+				<if test="applyStatus != null and applyStatus.id != null">applyStatus=#{applyStatus.id}, </if>
+				<if test="createUser != null">createUser=#{createUser}, </if>
+				<if test="createTime != null">createTime=#{createTime}, </if>
+				<if test="updateUser != null">updateUser=#{updateUser}, </if>
+				<if test="updateTime != null">updateTime=#{updateTime}, </if>
+			</trim>
+		</set>
+		<where>
+			<trim suffixOverrides="and">
+				<if test="id != null">id=#{id} and </if>
+			</trim>
+		</where>
+	</update>
+
+	<resultMap id="resultMap" type="Apply">
+		<id property="id" javaType="java.lang.String" column="id"/>
+		<result property="applyNo" javaType="java.lang.String" column="applyNo"/>
+		<result property="applyCellphone" javaType="java.lang.String" column="applyCellphone"/>
+		<result property="applyBeginDate" javaType="java.util.Date" column="applyBeginDate"/>
+		<result property="expectBackDate" javaType="java.util.Date" column="expectBackDate"/>
+		<result property="targetAddress" javaType="java.lang.String" column="targetAddress"/>
+		<result property="applyRemark" javaType="java.lang.String" column="applyRemark"/>
+		<result property="applyDate" javaType="java.util.Date" column="applyDate"/>
+		<result property="examineRemark" javaType="java.lang.String" column="examineRemark"/>
+		<result property="examineDate" javaType="java.util.Date" column="examineDate"/>
+		<result property="driverCellphone" javaType="java.lang.String" column="driverCellphone"/>
+		<result property="realityBackDate" javaType="java.util.Date" column="realityBackDate"/>
+		<result property="createUser" javaType="java.lang.String" column="createUser"/>
+		<result property="createTime" javaType="java.util.Date" column="createTime"/>
+		<result property="updateUser" javaType="java.lang.String" column="updateUser"/>
+		<result property="updateTime" javaType="java.util.Date" column="updateTime"/>
+		<association property="applyUser" javaType="User">
+			<id property="id" javaType="java.lang.String" column="applyUser"/>
+			<result property="name" javaType="java.lang.String" column="applyName"/>
+		</association>
+		<association property="seat" javaType="Seat">
+			<id property="id" javaType="java.lang.String" column="seat"/>
+			<result property="name" javaType="java.lang.String" column="seatText"/>
+			<result property="code" javaType="java.lang.String" column="seatCode"/>
+		</association>
+		<association property="examineUser" javaType="User">
+			<id property="id" javaType="java.lang.String" column="examineUser"/>
+			<result property="name" javaType="java.lang.String" column="examineName"/>
+		</association>
+		<association property="car" javaType="Car">
+			<id property="id" javaType="java.lang.String" column="car"/>
+			<result property="name" javaType="java.lang.String" column="no"/>
+		</association>
+		<association property="driver" javaType="Driver">
+			<id property="id" javaType="java.lang.String" column="driver"/>
+			<result property="name" javaType="java.lang.String" column="driverName"/>
+		</association>
+		<association property="applyStatus" javaType="ApplyStatus">
+			<id property="id" javaType="java.lang.String" column="applyStatus"/>
+			<result property="name" javaType="java.lang.String" column="applyStatusText"/>
+			<result property="code" javaType="java.lang.String" column="applyStatusCode"/>
+		</association>
+	</resultMap>
+</mapper>
