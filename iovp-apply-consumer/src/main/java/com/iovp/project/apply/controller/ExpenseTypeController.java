@@ -10,6 +10,7 @@ import com.iovp.project.pojo.entity.user.User;
 import com.iovp.project.transport.apply.ExpenseTypeTransport;
 import com.iovp.project.transport.user.UserTransport;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -18,8 +19,8 @@ import org.springframework.web.bind.annotation.*;
  * @version 1.0.0
  * @since 1.0.0
  */
-@RestController("expenseTypeController")
-@RequestMapping("/apply/expensetype")
+@FeignClient(name = "iovp-apply-provider")
+@RequestMapping("/trans/apply/expensetype")
 public class ExpenseTypeController extends BaseController {
 	@Autowired
 	private ExpenseTypeTransport transport;

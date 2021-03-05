@@ -2,6 +2,7 @@ package com.iovp.project.pojo.entity.apply;
 
 import com.iovp.project.base.pojo.entity.BaseEntity;
 import com.iovp.project.pojo.entity.car.Car;
+import com.iovp.project.pojo.entity.car.Seat;
 import com.iovp.project.pojo.entity.driver.Driver;
 import com.iovp.project.pojo.entity.user.User;
 
@@ -19,7 +20,7 @@ public class Apply extends BaseEntity {
 	private String applyNo;                 // 申请编码
 	private User applyUser;                 // 申请人
 	private String applyCellphone;          // 申请人手机号码
-	private Integer memberCount;            // 出行人数
+	private Seat seat;                      // 出行人数
 	private Date applyBeginDate;            // 出行日期
 	private Date expectBackDate;            // 申请返回日期
 	private String targetAddress;           // 出行目的地
@@ -33,6 +34,8 @@ public class Apply extends BaseEntity {
 	private String driverCellphone;         // 驾驶员联系电话
 	private Date realityBackDate;           // 实际返回时间
 	private ApplyStatus applyStatus;        // 申请状态
+	private Date beginQueryApplyBeginDate;  // 查询申请出车时间的开始时间点
+	private Date endQueryApplyEndDate;      // 查询申请出车时间的结束时间点
 
 	public String getId() {
 		return id;
@@ -66,12 +69,12 @@ public class Apply extends BaseEntity {
 		this.applyCellphone = applyCellphone;
 	}
 
-	public Integer getMemberCount() {
-		return memberCount;
+	public Seat getSeat() {
+		return seat;
 	}
 
-	public void setMemberCount(Integer memberCount) {
-		this.memberCount = memberCount;
+	public void setSeat(Seat seat) {
+		this.seat = seat;
 	}
 
 	public Date getApplyBeginDate() {
@@ -176,5 +179,21 @@ public class Apply extends BaseEntity {
 
 	public void setApplyStatus(ApplyStatus applyStatus) {
 		this.applyStatus = applyStatus;
+	}
+
+	public Date getBeginQueryApplyBeginDate() {
+		return beginQueryApplyBeginDate;
+	}
+
+	public void setBeginQueryApplyBeginDate(Date beginQueryApplyBeginDate) {
+		this.beginQueryApplyBeginDate = beginQueryApplyBeginDate;
+	}
+
+	public Date getEndQueryApplyEndDate() {
+		return endQueryApplyEndDate;
+	}
+
+	public void setEndQueryApplyEndDate(Date endQueryApplyEndDate) {
+		this.endQueryApplyEndDate = endQueryApplyEndDate;
 	}
 }

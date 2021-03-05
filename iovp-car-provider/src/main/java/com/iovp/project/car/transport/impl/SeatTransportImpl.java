@@ -1,26 +1,27 @@
-package com.iovp.project.driver.transport.impl;
+package com.iovp.project.car.transport.impl;
 
 import com.iovp.project.base.pojo.vo.PageVO;
 import com.iovp.project.base.pojo.vo.QueryVO;
-import com.iovp.project.driver.service.DriverLicenseTypeService;
-import com.iovp.project.pojo.entity.driver.DriverLicenseType;
-import com.iovp.project.transport.driver.DriverLicenseTypeTransport;
+import com.iovp.project.car.service.SeatService;
+import com.iovp.project.pojo.entity.car.Seat;
+import com.iovp.project.transport.car.SeatTransport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
- * <b>智慧公务车信息平台-驾驶证类型功能传输层接口实现类</b>
+ * <b>智慧公务车信息平台-车辆座位数量传输层接口实现类</b>
  * @author hsl
  * @version 1.0.0
  * @since 1.0.0
  */
-@RestController("driverLicenseTypeTransport")
-@RequestMapping("/trans/driver/transport")
-public class DriverLicenseTypeTransportImpl implements DriverLicenseTypeTransport {
+@RestController("seatTransport")
+@RequestMapping("/trans/car/seat")
+public class SeatTransportImpl implements SeatTransport {
+
 	@Autowired
-	private DriverLicenseTypeService service;
+	private SeatService service;
 
 	/**
 	 * <b>根据查询对象分页查询</b>
@@ -30,7 +31,7 @@ public class DriverLicenseTypeTransportImpl implements DriverLicenseTypeTranspor
 	 */
 	@PostMapping("/page")
 	@Override
-	public PageVO<DriverLicenseType> getPageByQuery(@RequestBody QueryVO<DriverLicenseType> queryVO) throws Exception {
+	public PageVO<Seat> getPageByQuery(@RequestBody QueryVO<Seat> queryVO) throws Exception {
 		return service.getPageByQuery(queryVO.getQuery(), queryVO.getPageVO());
 	}
 
@@ -42,7 +43,7 @@ public class DriverLicenseTypeTransportImpl implements DriverLicenseTypeTranspor
 	 */
 	@PostMapping("/list")
 	@Override
-	public List<DriverLicenseType> getListByQuery(@RequestBody DriverLicenseType query) throws Exception {
+	public List<Seat> getListByQuery(@RequestBody Seat query) throws Exception {
 		return service.getListByQuery(query);
 	}
 
@@ -54,7 +55,7 @@ public class DriverLicenseTypeTransportImpl implements DriverLicenseTypeTranspor
 	 */
 	@PostMapping("/save")
 	@Override
-	public boolean save(@RequestBody DriverLicenseType entity) throws Exception {
+	public boolean save(@RequestBody Seat entity) throws Exception {
 		return service.save(entity);
 	}
 
@@ -66,7 +67,7 @@ public class DriverLicenseTypeTransportImpl implements DriverLicenseTypeTranspor
 	 */
 	@PostMapping("/update")
 	@Override
-	public boolean update(@RequestBody DriverLicenseType entity) throws Exception {
+	public boolean update(@RequestBody Seat entity) throws Exception {
 		return service.update(entity);
 	}
 
@@ -78,7 +79,7 @@ public class DriverLicenseTypeTransportImpl implements DriverLicenseTypeTranspor
 	 */
 	@PostMapping("/id")
 	@Override
-	public DriverLicenseType getById(@RequestParam String id) throws Exception {
+	public Seat getById(@RequestParam String id) throws Exception {
 		return service.getById(id);
 	}
 
@@ -90,7 +91,7 @@ public class DriverLicenseTypeTransportImpl implements DriverLicenseTypeTranspor
 	 */
 	@PostMapping("/code")
 	@Override
-	public DriverLicenseType getByCode(@RequestParam String code) throws Exception {
+	public Seat getByCode(@RequestParam String code) throws Exception {
 		return service.getByCode(code);
 	}
 }

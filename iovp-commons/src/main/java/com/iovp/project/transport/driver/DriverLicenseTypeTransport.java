@@ -18,7 +18,7 @@ import java.util.List;
  * @since 1.0.0
  */
 @FeignClient(name = "iovp-system-provider")
-@RequestMapping("/driverlicensetype/transport")
+@RequestMapping("/trans/driver/licensetype")
 public interface DriverLicenseTypeTransport {
 	/**
 	 * <b>根据查询对象分页查询</b>

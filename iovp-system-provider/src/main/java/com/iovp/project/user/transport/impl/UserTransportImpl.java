@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 1.0.0
  */
 @RestController("userTransport")
-@RequestMapping("/user/transport")
+@RequestMapping("/trans/user/transport")
 public class UserTransportImpl implements UserTransport {
 	@Autowired
 	private UserService userService;

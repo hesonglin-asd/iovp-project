@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @since 1.0.0
  */
 @FeignClient(name = "iovp-system-provider")
-@RequestMapping("/user/transport")
+@RequestMapping("/trans/system/user")
 public interface UserTransport {
 	/**
 	 * <b>进行用户登录</b>

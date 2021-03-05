@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 1.0.0
  */
 @RestController("driverLicenseTypeController")
-@RequestMapping("/driverlicensetype")
+@RequestMapping("/driver/licensetype")
 public class DriverLicenseTypeController extends BaseController {
 	@Autowired
 	private DriverLicenseTypeTransport transport;

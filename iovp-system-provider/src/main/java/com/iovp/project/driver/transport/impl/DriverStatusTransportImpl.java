@@ -17,7 +17,7 @@ import java.util.List;
  * @since 1.0.0
  */
 @RestController("driverStatusTransport")
-@RequestMapping("/driverstatus/transport")
+@RequestMapping("/trans/driver/status")
 public class DriverStatusTransportImpl implements DriverStatusTransport {
 	@Autowired
 	private DriverStatusService service;

@@ -10,10 +10,7 @@ import com.iovp.project.pojo.entity.user.User;
 import com.iovp.project.transport.apply.ApplyStatusTransport;
 import com.iovp.project.transport.user.UserTransport;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <b>智慧公务车信息平台-用车申请状态控制层类</b>
@@ -21,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @version 1.0.0
  * @since 1.0.0
  */
+@RestController("applyStatusController")
+@RequestMapping("/apply/status")
 public class ApplyStatusController extends BaseController {
 	@Autowired
 	private ApplyStatusTransport transport;

@@ -17,7 +17,7 @@ import java.util.List;
  * @since 1.0.0
  */
 @RestController("applyStatusTransport")
-@RequestMapping("/applystatus/transprot")
+@RequestMapping("/trans/apply/status")
 public class ApplyStatusTransportImpl implements ApplyStatusTransport {
 	@Autowired
 	private ApplyStatusService service;
