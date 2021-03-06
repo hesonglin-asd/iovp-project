@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * <b>申请编号生成工具类</b>
- * @author Arthur
+ * @author hsl
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -21,6 +21,6 @@ public class ApplyNoGenerator {
 	 */
 	public static String createApplyNo() {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSSS");
-		return "LY" + dateFormat.format(new Date());
+		return "HSL" + dateFormat.format(new Date());
 	}
 }
