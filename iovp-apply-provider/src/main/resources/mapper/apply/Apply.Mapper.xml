@@ -4,43 +4,43 @@
 <mapper namespace="com.iovp.project.apply.dao.ApplyDao">
 	<select id="findListByQuery" parameterType="Apply" resultMap="resultMap">
 		select
-		ca.id,
-		ca.applyNo,
-		ca.applyUser,
-		au.name applyName,
-		ca.applyCellphone,
-		ca.seat,
-		cs.text seatText,
-		cs.code seatCode,
-		ca.applyBeginDate,
-		ca.expectBackDate,
-		ca.targetAddress,
-		ca.applyRemark,
-		ca.applyDate,
-		ca.examineUser,
-		eu.name examineName,
-		ca.examineRemark,
-		ca.examineDate,
-		ca.car,
-		ci.no,
-		ca.driver,
-		sd.name driverName,
-		ca.driverCellphone,
-		ca.realityBackDate,
-		ca.applyStatus,
-		cas.text applyStatusText,
-		cas.code applyStatusCode,
-		ca.createUser,
-		ca.createTime,
-		ca.updateUser,
-		ca.updateTime
+			ca.id,
+			ca.applyNo,
+			ca.applyUser,
+			au.name applyName,
+			ca.applyCellphone,
+			ca.seat,
+			cs.text seatText,
+			cs.code seatCode,
+			ca.applyBeginDate,
+			ca.expectBackDate,
+			ca.targetAddress,
+			ca.applyRemark,
+			ca.applyDate,
+			ca.examineUser,
+			eu.name examineName,
+			ca.examineRemark,
+			ca.examineDate,
+			ca.car,
+			ci.no,
+			ca.driver,
+			sd.name driverName,
+			ca.driverCellphone,
+			ca.realityBackDate,
+			ca.applyStatus,
+			cas.text applyStatusText,
+			cas.code applyStatusCode,
+			ca.createUser,
+			ca.createTime,
+			ca.updateUser,
+			ca.updateTime
 		from
-		car_apply ca join sys_user au on ca.applyUser=au.id
-		join car_seat cs on ca.seat=cs.id
-		left join sys_user eu on ca.examineUser=eu.id
-		left join car_info ci on ca.car=ci.id
-		left join sys_driver sd on ca.driver=sd.id
-		join car_apply_status cas on ca.applyStatus=cas.id
+			car_apply ca join sys_user au on ca.applyUser=au.id
+			join car_seat cs on ca.seat=cs.id
+			left join sys_user eu on ca.examineUser=eu.id
+			left join car_info ci on ca.car=ci.id
+			left join sys_driver sd on ca.driver=sd.id
+			join car_apply_status cas on ca.applyStatus=cas.id
 		<where>
 			<trim suffixOverrides="and">
 				<if test="id != null">ca.id=#{id} and </if>
