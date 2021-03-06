@@ -10,6 +10,7 @@ import java.util.Date;
  * @since 1.0.0
  */
 public class ApplyVO implements Serializable {
+	private static final long serialVersionUID = -2942041688298999463L;
 	private String cellphone;                       // 申请人联系电话
 	private String seat;                            // 车辆座位数量主键
 	private Date applyBeginDate;                    // 出行日期
